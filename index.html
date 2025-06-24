@@ -22,21 +22,31 @@
             min-height: 100vh;
         }
 
-        .game-container {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            border: 2px solid #b2795c;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(178, 121, 92, 0.3);
-        }
+        html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
 
-        #gameCanvas {
-            display: block;
-            background: transparent;
-        }
+.game-container {
+    position: relative;
+    width: 95vw;
+    height: 95vh;
+    max-width: 1000px;
+    max-height: 800px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border: 2px solid #b2795c;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(178, 121, 92, 0.3);
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
 
         .ui-overlay {
             position: absolute;
@@ -233,6 +243,14 @@
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initial sizing
+
         const scoreElement = document.getElementById('score');
         const stageDisplayElement = document.getElementById('stageDisplay');
         const enemiesKilledElement = document.getElementById('enemiesKilled');
@@ -323,9 +341,6 @@
             }
             if (keys['ArrowDown'] || keys['KeyS']) {
                 player.y = Math.min(canvas.height - player.height, player.y + player.speed);
-            }
-            if (keys['Space']) {
-                shoot();
             }
         }
 
@@ -942,6 +957,12 @@ document.getElementById('laserWarning').style.display = 'none';
 
         // Initialize game
         createStars();
+        setInterval(() => {
+    if (gameRunning) {
+        shoot();
+    }
+}, 150); // adjust interval as needed
+
         gameLoop();
     </script>
 </body>
