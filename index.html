@@ -41,6 +41,161 @@
     box-shadow: 0 0 30px rgba(178, 121, 92, 0.3);
 }
 
+/*start game*/
+/* ADD THIS TO YOUR CSS */
+.start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 10, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    z-index: 25;
+}
+
+.start-content {
+    text-align: center;
+    background: rgba(26, 26, 26, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid #b2795c;
+    box-shadow: 0 0 40px rgba(178, 121, 92, 0.4);
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+.start-content h1 {
+    color: #b2795c;
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(178, 121, 92, 0.8);
+    letter-spacing: 3px;
+}
+
+.start-instructions {
+    margin-bottom: 30px;
+}
+
+.start-instructions p {
+    color: #cccccc;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.controls-info {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.desktop-controls,
+.mobile-controls {
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 15px;
+    background: rgba(178, 121, 92, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(178, 121, 92, 0.3);
+}
+
+.desktop-controls strong,
+.mobile-controls strong {
+    color: #b2795c;
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #b2795c, #b74b4b);
+    color: #ffffff;
+    border: none;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(178, 121, 92, 0.4);
+    letter-spacing: 2px;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(178, 121, 92, 0.6);
+    background: linear-gradient(135deg, #c2896c, #c75b5b);
+}
+
+.start-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Mobile responsive for start screen */
+@media (max-width: 768px) {
+    .start-content {
+        padding: 30px 20px;
+    }
+    
+    .start-content h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .start-instructions p {
+        font-size: 16px;
+    }
+    
+    .controls-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .desktop-controls,
+    .mobile-controls {
+        font-size: 13px;
+        padding: 12px;
+    }
+    
+    .start-btn {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .start-content h1 {
+        font-size: 28px;
+    }
+    
+    .start-instructions p {
+        font-size: 14px;
+    }
+    
+    .start-btn {
+        padding: 12px 25px;
+        font-size: 18px;
+    }
+}
+
+/* Hide mobile controls info on desktop, show desktop controls */
+@media (min-width: 769px) {
+    .mobile-controls {
+        display: none;
+    }
+}
+
+/* Hide desktop controls info on mobile, show mobile controls */
+@media (max-width: 768px) {
+    .desktop-controls {
+        display: none;
+    }
+}
+
+
 #gameCanvas {
     width: 100%;
     height: 100%;
@@ -206,6 +361,203 @@
             0% { opacity: 0.3; }
             100% { opacity: 1; }
         }
+
+        /* Mobile responsive styles */
+
+/* Touch controls */
+.touch-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    display: none;
+    pointer-events: all;
+    z-index: 15;
+}
+
+.joystick-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 120px;
+    height: 120px;
+}
+
+.joystick-base {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(178, 121, 92, 0.3);
+    border: 3px solid rgba(178, 121, 92, 0.6);
+    position: relative;
+}
+
+.joystick-knob {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #b2795c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(178, 121, 92, 0.8);
+    transition: all 0.1s ease;
+}
+
+.fire-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #b74b4b, #b2795c);
+    border: 3px solid rgba(183, 75, 75, 0.8);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(183, 75, 75, 0.5);
+    user-select: none;
+    cursor: pointer;
+}
+
+.fire-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 25px rgba(183, 75, 75, 0.8);
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+    .game-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .touch-controls {
+        display: block;
+    }
+    
+    .controls {
+        display: none;
+    }
+    
+    .score-display {
+        font-size: 16px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    .stage-display {
+        top: 50px;
+        left: 10px;
+        font-size: 14px;
+    }
+    
+    .health-bar {
+        width: 150px;
+        height: 16px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .boss-warning {
+        font-size: 20px;
+    }
+    
+    .boss-spawn-warning {
+        font-size: 24px;
+    }
+    
+    #laserWarning {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .score-display {
+        font-size: 14px;
+    }
+    
+    .stage-display {
+        font-size: 12px;
+    }
+    
+    .health-bar {
+        width: 120px;
+        height: 14px;
+    }
+    
+    .joystick-container {
+        width: 100px;
+        height: 100px;
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .joystick-knob {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .fire-button {
+        width: 70px;
+        height: 70px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 12px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .joystick-container {
+        width: 80px;
+        height: 80px;
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    .joystick-knob {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .fire-button {
+        width: 60px;
+        height: 60px;
+        bottom: 10px;
+        right: 10px;
+        font-size: 11px;
+    }
+    
+    .score-display {
+        top: 5px;
+        left: 5px;
+        font-size: 12px;
+    }
+    
+    .stage-display {
+        top: 35px;
+        left: 5px;
+        font-size: 11px;
+    }
+    
+    .health-bar {
+        width: 100px;
+        height: 12px;
+        top: 5px;
+        right: 5px;
+    }
+}
     </style>
 </head>
 <body>
@@ -227,6 +579,14 @@
             <div class="boss-warning" id="laserWarning">LASER INCOMING!</div>
 
             <div class="health-bar">
+                <div class="touch-controls">
+    <div class="joystick-container" id="joystick">
+        <div class="joystick-base">
+            <div class="joystick-knob" id="joystickKnob"></div>
+        </div>
+    </div>
+    <div class="fire-button" id="fireButton">FIRE</div>
+</div>
                 <div class="health-fill" id="healthFill" style="width: 100%;"></div>
             </div>
             <div class="controls">
@@ -239,6 +599,28 @@
             <p>Final Score: <span id="finalScore">0</span></p>
             <button class="restart-btn" onclick="restartGame()">Play Again</button>
         </div>
+        <!-- ADD THIS INSIDE THE ui-overlay div, after the game-over div -->
+<div class="start-screen" id="startScreen">
+    <div class="start-content">
+        <h1>SPACE SHOOTER</h1>
+        <div class="start-instructions">
+            <p>Defend Earth from the alien invasion!</p>
+            <div class="controls-info">
+                <div class="desktop-controls">
+                    <strong>Desktop Controls:</strong><br>
+                    WASD/Arrow Keys: Move<br>
+                    Space: Shoot
+                </div>
+                <div class="mobile-controls">
+                    <strong>Mobile Controls:</strong><br>
+                    Virtual Joystick: Move<br>
+                    Fire Button: Shoot
+                </div>
+            </div>
+        </div>
+        <button class="start-btn" onclick="startGame()">PLAY NOW</button>
+    </div>
+</div>
     </div>
 
     <script>
@@ -248,9 +630,13 @@
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 
-    // Reposition player to be visible on resize (optional)
-    player.x = canvas.width / 2;
-    player.y = canvas.height - 80;
+    // Reposition player to be visible on resize
+    player.x = Math.min(player.x, canvas.width - player.width);
+    player.y = Math.min(player.y, canvas.height - player.height);
+    
+    // Ensure player starts in a good position
+    if (player.x < 0) player.x = canvas.width / 2;
+    if (player.y < 0) player.y = canvas.height - 80;
 }
 
 window.addEventListener('resize', resizeCanvas);
@@ -341,21 +727,132 @@ resizeCanvas(); // Initial sizing
             keys[e.code] = false;
         });
 
-        // Player movement and shooting
-        function updatePlayer() {
-            if (keys['ArrowLeft'] || keys['KeyA']) {
-                player.x = Math.max(0, player.x - player.speed);
-            }
-            if (keys['ArrowRight'] || keys['KeyD']) {
-                player.x = Math.min(canvas.width - player.width, player.x + player.speed);
-            }
-            if (keys['ArrowUp'] || keys['KeyW']) {
-                player.y = Math.max(0, player.y - player.speed);
-            }
-            if (keys['ArrowDown'] || keys['KeyS']) {
-                player.y = Math.min(canvas.height - player.height, player.y + player.speed);
-            }
+        // ADD THIS AFTER the existing input handling code:
+
+// Touch controls
+let touchInput = {
+    x: 0,
+    y: 0,
+    active: false,
+    firing: false
+};
+
+let joystickCenter = { x: 0, y: 0 };
+let joystickRadius = 40;
+
+// Initialize joystick
+function initJoystick() {
+    const joystick = document.getElementById('joystick');
+    const joystickKnob = document.getElementById('joystickKnob');
+    const fireButton = document.getElementById('fireButton');
+    
+    if (!joystick) return;
+    
+    const joystickRect = joystick.getBoundingClientRect();
+    joystickCenter.x = joystickRect.left + joystickRect.width / 2;
+    joystickCenter.y = joystickRect.top + joystickRect.height / 2;
+    
+    // Joystick touch events
+    function handleJoystickStart(e) {
+        e.preventDefault();
+        touchInput.active = true;
+        handleJoystickMove(e);
+    }
+    
+    function handleJoystickMove(e) {
+        if (!touchInput.active) return;
+        
+        const touch = e.touches ? e.touches[0] : e;
+        const deltaX = touch.clientX - joystickCenter.x;
+        const deltaY = touch.clientY - joystickCenter.y;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        if (distance <= joystickRadius) {
+            touchInput.x = deltaX / joystickRadius;
+            touchInput.y = deltaY / joystickRadius;
+            joystickKnob.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        } else {
+            const angle = Math.atan2(deltaY, deltaX);
+            touchInput.x = Math.cos(angle);
+            touchInput.y = Math.sin(angle);
+            joystickKnob.style.transform = `translate(${Math.cos(angle) * joystickRadius}px, ${Math.sin(angle) * joystickRadius}px)`;
         }
+    }
+    
+    function handleJoystickEnd(e) {
+        e.preventDefault();
+        touchInput.active = false;
+        touchInput.x = 0;
+        touchInput.y = 0;
+        joystickKnob.style.transform = 'translate(0px, 0px)';
+    }
+    
+    // Fire button events
+    function handleFireStart(e) {
+        e.preventDefault();
+        touchInput.firing = true;
+    }
+    
+    function handleFireEnd(e) {
+        e.preventDefault();
+        touchInput.firing = false;
+    }
+    
+    // Add event listeners
+    joystick.addEventListener('touchstart', handleJoystickStart);
+    joystick.addEventListener('touchmove', handleJoystickMove);
+    joystick.addEventListener('touchend', handleJoystickEnd);
+    joystick.addEventListener('mousedown', handleJoystickStart);
+    joystick.addEventListener('mousemove', handleJoystickMove);
+    joystick.addEventListener('mouseup', handleJoystickEnd);
+    
+    fireButton.addEventListener('touchstart', handleFireStart);
+    fireButton.addEventListener('touchend', handleFireEnd);
+    fireButton.addEventListener('mousedown', handleFireStart);
+    fireButton.addEventListener('mouseup', handleFireEnd);
+    
+    // Prevent scrolling on touch
+    document.addEventListener('touchmove', (e) => {
+        if (e.target.closest('.touch-controls')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+}
+
+// Initialize on load and resize
+window.addEventListener('load', initJoystick);
+window.addEventListener('resize', () => {
+    setTimeout(initJoystick, 100);
+});
+
+        // Player movement and shooting
+        // REPLACE the existing updatePlayer function with this:
+function updatePlayer() {
+    // Keyboard input
+    if (keys['ArrowLeft'] || keys['KeyA']) {
+        player.x = Math.max(0, player.x - player.speed);
+    }
+    if (keys['ArrowRight'] || keys['KeyD']) {
+        player.x = Math.min(canvas.width - player.width, player.x + player.speed);
+    }
+    if (keys['ArrowUp'] || keys['KeyW']) {
+        player.y = Math.max(0, player.y - player.speed);
+    }
+    if (keys['ArrowDown'] || keys['KeyS']) {
+        player.y = Math.min(canvas.height - player.height, player.y + player.speed);
+    }
+    
+    // Touch input
+    if (touchInput.active) {
+        const moveSpeed = player.speed * 1.2; // Slightly faster for touch
+        player.x += touchInput.x * moveSpeed;
+        player.y += touchInput.y * moveSpeed;
+        
+        // Keep player in bounds
+        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+    }
+}
 
         // Shooting
         let lastShot = 0;
@@ -589,7 +1086,7 @@ if (boss.laserWarningShown && now - boss.laserWarningStart > 1500) {
         x: boss.x + boss.width / 2 - 25,
         y: boss.y + boss.height,
         width: 50,
-        height: 600,
+        height: canvas.height,
         speed: 0,
         type: 'laser',
         life: 90 // Lasts longer
@@ -906,7 +1403,7 @@ if (boss.laserWarningShown && now - boss.laserWarningStart > 1500) {
 
         // Restart game
         function restartGame() {
-            gameRunning = true;
+            gameRunning = false; // Stop the game first
             score = 0;
             health = 100;
             stage = 1;
@@ -928,13 +1425,27 @@ if (boss.laserWarningShown && now - boss.laserWarningStart > 1500) {
             gameOverDiv.querySelector('h2').textContent = 'Game Over';
             gameOverDiv.querySelector('p').innerHTML = 'Final Score: <span id="finalScore">0</span>';
             
-            gameLoop();
+            // Reset boss spawn variables
+            bossSpawnTriggered = false;
+            bossSpawning = false;
+            bossSpawnWarning.style.display = 'none';
+            document.getElementById('laserWarning').style.display = 'none';
+            
+            // Show start screen instead of immediately starting
+            document.getElementById('startScreen').style.display = 'flex';
         }
 
         bossSpawnTriggered = false;
 bossSpawning = false;
 bossSpawnWarning.style.display = 'none';
 document.getElementById('laserWarning').style.display = 'none';
+
+// startGame
+function startGame() {
+    document.getElementById('startScreen').style.display = 'none';
+    gameRunning = true;
+    gameLoop();
+}
 
 
         // Main game loop
@@ -969,14 +1480,15 @@ document.getElementById('laserWarning').style.display = 'none';
         }
 
         // Initialize game
-        createStars();
-        setInterval(() => {
-    if (gameRunning) {
+        gameRunning = false; // Game starts paused
+createStars();
+
+setInterval(() => {
+    if (gameRunning && (keys['Space'] || touchInput.firing)) {
         shoot();
     }
-}, 150); // adjust interval as needed
-
-        gameLoop();
+}, 150);
+        // gameLoop();
     </script>
 </body>
 </html>
