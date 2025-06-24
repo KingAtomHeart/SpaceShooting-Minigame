@@ -243,21 +243,23 @@
 
     <script>
         const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 
-    function resizeCanvas() {
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
+    // Reposition player to be visible on resize (optional)
+    player.x = canvas.width / 2;
+    player.y = canvas.height - 80;
+}
 
-        // Optional: only reposition player if it's already defined
-        if (typeof player !== 'undefined') {
-            player.x = canvas.width / 2;
-            player.y = canvas.height - 80;
-        }
-    }
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+        function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+}
 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas(); // Initial sizing
