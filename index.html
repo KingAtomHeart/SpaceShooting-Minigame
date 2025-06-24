@@ -211,7 +211,8 @@
 <body>
     <div class="game-container">
         <div class="stars" id="stars"></div>
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <canvas id="gameCanvas"></canvas>
+
         
         <div class="ui-overlay">
             <div class="score-display">
@@ -242,11 +243,21 @@
 
     <script>
         const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-}
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+
+        // Optional: only reposition player if it's already defined
+        if (typeof player !== 'undefined') {
+            player.x = canvas.width / 2;
+            player.y = canvas.height - 80;
+        }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas(); // Initial sizing
